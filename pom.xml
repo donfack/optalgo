@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.optalgo</groupId>
+	<artifactId>balanceoptalgo</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+	<name>Balance optimize algorithm</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<logback-classic-version>1.1.7</logback-classic-version>
+		<logback-core-version>1.1.7</logback-core-version>
+	</properties>
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<plugins>
+			<!-- define java version of maven -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>   <!-- use java 8 -->
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.5.0</version>
+				<executions>
+					<!-- Used by Netbeans to run the application: -->
+					<execution>
+						<id>Start Application</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>java</executable>
+							<workingDirectory>${basedir}/target</workingDirectory>
+							<arguments>
+								<argument>-classpath</argument>
+								<!-- automatically creates the classpath using all project dependencies, 
+									also adding the project build directory -->
+								<classpath />
+								<argument>com.github.optalgo.UtilityOptAlgo</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.0,)</versionRange>
+										<goals>
+											<goal>copy-dependencies</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback-core-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-classic-version}</version>
+		</dependency>
+	</dependencies>
+</project>

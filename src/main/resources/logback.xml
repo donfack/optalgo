@@ -1,0 +1,33 @@
+<configuration>
+<!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
+       the key "bySecond" into the logger context. This value will be
+       available to all subsequent configuration elements. 
+  <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>  -->
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <!-- <file>DeSCaT-${bySecond}.log</file> -->
+    <file>Event.log</file> 
+    <encoder>
+      <pattern>%date %level [%thread] [%file:%line] %msg %n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level: %msg [%file:%line]%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="FILE" />
+    <appender-ref ref="STDOUT" />
+  </root>
+  <root level="error">
+    <appender-ref ref="FILE" />
+    <appender-ref ref="STDOUT" />
+  </root>
+  <root level="debug">
+    <appender-ref ref="FILE" />
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
